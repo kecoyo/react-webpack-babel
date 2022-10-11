@@ -1,20 +1,20 @@
 {
   "name": "react-webpack-babel",
   "version": "1.0.0",
-  "description": "",
+  "description": "React Webpack Babel Starter Kit",
   "main": "''",
   "scripts": {
-    "start": "webpack server --port 3050",
+    "start": "webpack server --port 3000",
     "build": "cross-env NODE_ENV=production webpack",
     "lint": "eslint src"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/jeselvmo/react-webpack-babel"
+    "url": "https://github.com/kecoyo/react-webpack-babel"
   },
   "author": "kecoyo",
   "license": "MIT",
-  "homepage": "https://github.com/jeselvmo/react-webpack-babel#readme",
+  "homepage": "https://github.com/kecoyo/react-webpack-babel#readme",
   "dependencies": {
     "@ant-design/icons": "^4.7.0",
     "@babel/polyfill": "^7.12.1",
@@ -33,6 +33,7 @@
     "react-router-dom": "^6.3.0",
     "redux": "^4.2.0",
     "redux-thunk": "^2.4.1",
+    "taro-ui": "^2.3.4",
     "velocity-animate": "^2.0.6"
   },
   "devDependencies": {
