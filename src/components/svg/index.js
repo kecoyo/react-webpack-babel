@@ -1,6 +1,6 @@
 import React from 'react';
-import classNames from 'classnames';
 import PropTypes from 'prop-types';
+import { withNativeProps } from 'ljmui2';
 import './index.less';
 
 const classPrefix = 'g-svg';
@@ -12,15 +12,15 @@ const SVG = React.forwardRef((props, ref) => {
     return null;
   }
 
-  return (
-    <svg ref={ref} className={classNames(classPrefix, props.className)} viewBox={element.viewBox}>
+  return withNativeProps(
+    props,
+    <svg ref={ref} className={classPrefix} viewBox={element.viewBox}>
       <use xlinkHref={`#${element.id}`} />
     </svg>
   );
 });
 
 SVG.propTypes = {
-  className: PropTypes.string,
   src: PropTypes.object.isRequired,
 };
 

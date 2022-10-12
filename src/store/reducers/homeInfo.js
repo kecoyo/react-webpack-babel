@@ -11,4 +11,4 @@ const reducer = produce((state, action) => {
   return state;
 }, initialState);
 
-export { reducer as default, initialState as homeInitialState };
+export default reducer;

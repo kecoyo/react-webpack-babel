@@ -2,12 +2,11 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Button, Space } from 'antd';
 
+import './index.less';
+
 import router from '@/common/router';
 import Page from '@/components/page';
-import PlayIcon from '@/components/play-icon';
-import { setUserInfo } from '@/store/reducers/user';
-
-import './index.less';
+import { dispatch } from '@/store';
 
 const classPrefix = 'g-login';
 
@@ -15,24 +14,20 @@ class Login extends React.PureComponent {
   constructor(props) {
     super(props);
     this.state = {};
-    this.onLogin();
   }
 
   onLogin = () => {
-    this.props.onSetUserInfo({
+    dispatch('actSetUserInfo', {
       id: 1,
       name: 'admin',
     });
-    router.navigate('/');
+    router.go('/');
   };
 
   render() {
     return (
-      <Page className={classPrefix} title="Login">
+      <Page className={classPrefix}>
         <Space direction="vertical">
-          <div>
-            <PlayIcon />
-          </div>
           <img src={require('@/images/logo.png')} alt="" />
           <Button onClick={this.onLogin}>登录</Button>
         </Space>
@@ -42,11 +37,9 @@ class Login extends React.PureComponent {
 }
 
 const mapStateToProps = (state) => ({
-  userInfo: state.user.info,
+  userInfo: state.userInfo,
 });
 
-const mapDispatchToProps = (dispatch) => ({
-  onSetUserInfo: (userInfo) => dispatch(setUserInfo(userInfo)),
-});
+const mapDispatchToProps = (dispatch) => ({});
 
 export default connect(mapStateToProps, mapDispatchToProps)(Login);

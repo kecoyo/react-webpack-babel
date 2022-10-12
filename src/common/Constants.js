@@ -1,5 +1,7 @@
 import jeselvmo from 'jeselvmo';
 
+export const APP_ID = 1181;
+
 // cs平台学校学段
 export const SCHOOL_STAGE = jeselvmo.defineEnum([
   { id: 1, name: '幼儿园' },

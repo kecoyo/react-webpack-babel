@@ -1,6 +1,6 @@
 /* eslint-disable no-param-reassign, no-console */
 import axios from 'axios';
-import AppUtils from '@/common/AppUtils';
+import Global from '@/common/Global';
 
 // 创建一个新的axios
 const instance = axios.create({
@@ -10,7 +10,7 @@ const instance = axios.create({
 // Axios请求拦截处理
 instance.interceptors.request.use(
   (config) => {
-    config.headers.Authorization = AppUtils.getToken();
+    config.headers.Authorization = Global.getToken();
     return config;
   },
   (err) => Promise.reject(err)

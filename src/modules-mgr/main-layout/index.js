@@ -6,9 +6,9 @@ import { HomeOutlined, UserOutlined, AppstoreOutlined, DownOutlined } from '@ant
 import _ from 'lodash';
 
 import router from '@/common/router';
-import { clearUserInfo } from '@/store/reducers/user';
 
 import './index.less';
+import { dispatch } from '@/store';
 
 const { Header, Sider, Content } = Layout;
 
@@ -16,9 +16,9 @@ const classPrefix = 'g-main-layout';
 
 class MainLayout extends React.PureComponent {
   sliderMenus = [
-    { key: '/dashboard', name: '首页', icon: <HomeOutlined /> }, //
-    { key: '/about', name: '关于我们', icon: <AppstoreOutlined /> },
-    { key: '/swiper-demo', name: 'Swiper测试', icon: <AppstoreOutlined /> },
+    { key: '/dashboard', label: '首页', icon: <HomeOutlined /> }, //
+    { key: '/about', label: '关于我们', icon: <AppstoreOutlined /> },
+    { key: '/swiper-demo', label: 'Swiper测试', icon: <AppstoreOutlined /> },
   ];
 
   constructor(props) {
@@ -28,9 +28,9 @@ class MainLayout extends React.PureComponent {
     };
   }
 
-  onMenuItemClick = (e) => {
+  onMenuSelect = (e) => {
     const activeKey = e.key;
-    router.navigate(`${activeKey}?id=1`, {
+    router.go(`${activeKey}?id=1`, {
       state: {
         type: 2,
       },
@@ -38,18 +38,13 @@ class MainLayout extends React.PureComponent {
   };
 
   onLogoff = () => {
-    this.props.onClearUserInfo();
-    router.navigate('/login');
+    dispatch('actClearUserInfo');
+    router.go('/login');
   };
 
   renderUserMenu = () => {
-    return (
-      <Menu>
-        <Menu.Item key="1" onClick={this.onLogoff}>
-          退出
-        </Menu.Item>
-      </Menu>
-    );
+    const items = [{ key: 'quit', label: '退出', onClick: this.onLogoff }];
+    return <Menu items={items} />;
   };
 
   render() {
@@ -71,13 +66,7 @@ class MainLayout extends React.PureComponent {
         </Header>
         <Layout className={`${classPrefix}-sider-layout`}>
           <Sider theme="light" trigger={null}>
-            <Menu theme="light" mode="inline" defaultSelectedKeys={[activeKey]} onClick={this.onMenuItemClick}>
-              {this.sliderMenus.map((menu) => (
-                <Menu.Item key={menu.key} icon={menu.icon}>
-                  {menu.name}
-                </Menu.Item>
-              ))}
-            </Menu>
+            <Menu theme="light" mode="inline" defaultSelectedKeys={[activeKey]} items={this.sliderMenus} onSelect={this.onMenuSelect} />
           </Sider>
           <Content className={`${classPrefix}-content`}>
             <Outlet />
@@ -89,11 +78,9 @@ class MainLayout extends React.PureComponent {
 }
 
 const mapStateToProps = (state) => ({
-  userInfo: state.user.info,
+  userInfo: state.userInfo,
 });
 
-const mapDispatchToProps = (dispatch) => ({
-  onClearUserInfo: () => dispatch(clearUserInfo()),
-});
+const mapDispatchToProps = (dispatch) => ({});
 
 export default connect(mapStateToProps, mapDispatchToProps)(MainLayout);

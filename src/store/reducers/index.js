@@ -1,14 +1,10 @@
-import userReducer, { userInitialState } from './user';
-import homeReducer, { homeInitialState } from './home';
+import { combineReducers } from 'redux';
+import userInfo from './userInfo';
+import homeInfo from './homeInfo';
 
-const reducers = {
-  user: userReducer,
-  home: homeReducer,
-};
+const reducers = combineReducers({
+  userInfo,
+  homeInfo,
+});
 
-const initialState = {
-  user: userInitialState,
-  home: homeInitialState,
-};
-
-export { reducers as default, initialState };
+export default reducers;

@@ -1,9 +1,15 @@
+import '@babel/polyfill';
+
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './modules';
+import Global from '@/common/Global';
+import App from './modules/app';
 
 /* 公共样式 */
+import 'antd-mobile/es/global';
 import './styles/index.less';
+
+window.Global = Global;
 
 ReactDOM.render(
   <React.StrictMode>

@@ -36,8 +36,9 @@ const webpackConfig = {
           babelrc: false,
           presets: ['@babel/preset-env', '@babel/preset-react'],
           plugins: [
-            // ['@babel/plugin-transform-runtime'], //
-            ['import', { libraryName: 'antd', style: true }],
+            ['@babel/plugin-transform-runtime'], //
+            ['import', { libraryName: 'antd', style: true }, 'antd'],
+            ['import', { libraryName: 'antd-mobile', libraryDirectory: 'es/components' }, 'antd-mobile'],
           ],
         },
       },
@@ -47,7 +48,6 @@ const webpackConfig = {
       },
       {
         test: /\.less$/,
-        // include: /(antd|antd-mobile)/,
         use: [
           isProd ? MiniCssExtractPlugin.loader : 'style-loader',
           'css-loader',
@@ -57,36 +57,11 @@ const webpackConfig = {
             options: {
               lessOptions: {
                 javascriptEnabled: true,
-                modifyVars: {
-                  'primary-color': '#409eff',
-                  'link-color': '#409eff',
-                  'border-radius-base': '4px',
-                },
               },
             },
           },
         ],
       },
-      // {
-      //   test: /\.less$/,
-      //   include: [path.resolve(__dirname, 'src/styles')],
-      //   use: [isProd ? MiniCssExtractPlugin.loader : 'style-loader', 'css-loader', 'postcss-loader', 'less-loader'],
-      // },
-      // {
-      //   test: /\.less$/,
-      //   exclude: [/(antd|antd-mobile)/, path.resolve(__dirname, 'src/styles')],
-      //   use: [
-      //     isProd ? MiniCssExtractPlugin.loader : 'style-loader',
-      //     {
-      //       loader: 'css-loader',
-      //       options: {
-      //         importLoaders: 2,
-      //       },
-      //     },
-      //     'postcss-loader',
-      //     'less-loader',
-      //   ],
-      // },
       {
         test: /\.(png|jpe?g|gif|xml)$/,
         use: [

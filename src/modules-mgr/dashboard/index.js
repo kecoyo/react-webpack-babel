@@ -1,6 +1,5 @@
 import React from 'react';
 import Page from '@/components/page';
-import PlayIcon from '@/components/play-icon';
 import './index.less';
 
 const classPrefix = 'g-dashboard';
@@ -14,12 +13,7 @@ class Dashboard extends React.PureComponent {
   componentDidMount() {}
 
   render() {
-    return (
-      <Page className={classPrefix} title="dashboard">
-        <PlayIcon />
-        <PlayIcon />
-      </Page>
-    );
+    return <Page className={classPrefix} title="dashboard"></Page>;
   }
 }
 

@@ -1,38 +1,42 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
-import { Layout, PageHeader } from 'antd';
+import { NavBar } from 'antd-mobile';
+import { withNativeProps } from 'ljmui2';
+import _ from 'lodash';
+
 import './index.less';
 
-const { Content } = Layout;
+import router from '@/common/router';
 
 const classPrefix = 'g-page';
 
 class Page extends React.PureComponent {
-  constructor(props) {
-    super(props);
-    this.state = {};
-  }
+  onBack = () => {
+    router.goBack();
+  };
 
   render() {
-    const { className, title, extra, children } = this.props;
-    return (
-      <Layout className={classNames(classPrefix, className)}>
-        <PageHeader className={`${classPrefix}-header`} title={title} extra={extra} />
-        <Content className={`${classPrefix}-content`}>{children}</Content>
-      </Layout>
+    const { title, children } = this.props;
+    const navBarProps = _.pick(this.props, ['back', 'backArrow', 'left', 'onBack', 'right']);
+    return withNativeProps(
+      this.props,
+      <div className={classPrefix}>
+        {title && (
+          <NavBar className={`${classPrefix}-header`} onBack={this.onBack} {...navBarProps}>
+            {title}
+          </NavBar>
+        )}
+        <div className={`${classPrefix}-content`}>{children}</div>
+      </div>
     );
   }
 }
 
 Page.propTypes = {
   title: PropTypes.string,
-  extra: PropTypes.object,
   children: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
 };
 
-Page.defaultProps = {
-  title: '',
-};
+Page.defaultProps = {};
 
 export default Page;
