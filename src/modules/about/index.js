@@ -6,6 +6,7 @@ import './index.less';
 import Page from '@/components/page';
 import router from '@/common/router';
 import SVG from '@/components/svg';
+import { ProgressModal } from 'ljmui';
 
 const classPrefix = 'g-about';
 
@@ -15,13 +16,15 @@ class About extends React.PureComponent {
     this.state = {};
   }
 
-  onBack() {}
+  onClick = () => {
+    ProgressModal.start({ message: 'sdfafafsd' });
+  };
 
   render() {
     return (
       <Page className={classPrefix} title="About">
         <Avatar src="" />
-        <i className="fa fa-cogs fa-5x" />
+        <i className="fa fa-cogs fa-5x" onClick={this.onClick} />
         <div>
           <SVG src={require('@/images/arrow-up.svg')} style={{ width: 48 }} />
           <SVG src={require('@/images/arrow-down.svg')} style={{ width: 48 }} />
