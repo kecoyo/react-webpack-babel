@@ -13,7 +13,11 @@ class Dashboard extends React.PureComponent {
   componentDidMount() {}
 
   render() {
-    return <Page className={classPrefix} title="dashboard"></Page>;
+    return (
+      <Page className={classPrefix} title="dashboard">
+        <br />
+      </Page>
+    );
   }
 }
 

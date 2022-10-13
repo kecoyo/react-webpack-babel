@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Button, Space, Toast } from 'antd-mobile';
+import { Button, Space } from 'antd-mobile';
 
 import './index.less';
 
@@ -44,6 +44,6 @@ const mapStateToProps = (state) => ({
   userInfo: state.userInfo,
 });
 
-const mapDispatchToProps = (dispatch) => ({});
+const mapDispatchToProps = () => ({});
 
 export default connect(mapStateToProps, mapDispatchToProps)(Home);

@@ -21,6 +21,7 @@ module.exports = {
     'no-return-assign': 0,
     'no-return-await': 0,
     'no-unused-expressions': 0,
+    'no-unused-vars': 1,
     'no-restricted-globals': 0,
     'no-prototype-builtins': 0,
     'no-restricted-properties': 0,

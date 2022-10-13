@@ -1,10 +1,9 @@
 import React from 'react';
-import { Avatar, Toast } from 'antd-mobile';
+import { Avatar } from 'antd-mobile';
 
 import './index.less';
 
 import Page from '@/components/page';
-import router from '@/common/router';
 import SVG from '@/components/svg';
 import { ProgressModal } from 'ljmui';
 
