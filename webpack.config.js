@@ -6,7 +6,6 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin'); // 将CSS提取出来，而不是和js混在一起
 // eslint-disable-next-line import/no-unresolved
 const WebpackBarPlugin = require('webpackbar'); // 进度条
-const SpeedMeasurePlugin = require('speed-measure-webpack-plugin');
 
 const { EnvironmentPlugin } = webpack;
 
@@ -103,7 +102,6 @@ const webpackConfig = {
     ],
   },
   plugins: [
-    new SpeedMeasurePlugin(),
     new CleanWebpackPlugin(),
     new EnvironmentPlugin({
       CSS_PREFIX: 'lsf-',
