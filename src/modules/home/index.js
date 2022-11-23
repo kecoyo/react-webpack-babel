@@ -30,12 +30,133 @@ class Home extends React.PureComponent {
           <b>{userInfo.name}</b>
         </div>
         <br />
-        <Space>
+        <Space wrap>
+          <Button color="primary" fill="solid">
+            Solid
+          </Button>
+          <Button color="primary" fill="outline">
+            Outline
+          </Button>
+          <Button color="primary" fill="none">
+            None
+          </Button>
+        </Space>
+        <div>{process.env.CSS_PREFIX}</div>
+        <div>
           <Button onClick={() => this.onClick('/')}>home</Button>
           <Button onClick={() => this.onClick('/about')}>about</Button>
           <Button onClick={() => this.onClick('/sample')}>sample</Button>
-        </Space>
-        <div>{process.env.CSS_PREFIX}</div>
+        </div>
+        <div>
+          <Button onClick={() => this.onClick('/')}>home</Button>
+          <Button onClick={() => this.onClick('/about')}>about</Button>
+          <Button onClick={() => this.onClick('/sample')}>sample</Button>
+        </div>
+        <div>
+          <Button onClick={() => this.onClick('/')}>home</Button>
+          <Button onClick={() => this.onClick('/about')}>about</Button>
+          <Button onClick={() => this.onClick('/sample')}>sample</Button>
+        </div>
+        <div>
+          <Button onClick={() => this.onClick('/')}>home</Button>
+          <Button onClick={() => this.onClick('/about')}>about</Button>
+          <Button onClick={() => this.onClick('/sample')}>sample</Button>
+        </div>
+        <div>
+          <Button onClick={() => this.onClick('/')}>home</Button>
+          <Button onClick={() => this.onClick('/about')}>about</Button>
+          <Button onClick={() => this.onClick('/sample')}>sample</Button>
+        </div>
+        <div>
+          <Button onClick={() => this.onClick('/')}>home</Button>
+          <Button onClick={() => this.onClick('/about')}>about</Button>
+          <Button onClick={() => this.onClick('/sample')}>sample</Button>
+        </div>
+        <div>
+          <Button onClick={() => this.onClick('/')}>home</Button>
+          <Button onClick={() => this.onClick('/about')}>about</Button>
+          <Button onClick={() => this.onClick('/sample')}>sample</Button>
+        </div>
+        <div>
+          <Button onClick={() => this.onClick('/')}>home</Button>
+          <Button onClick={() => this.onClick('/about')}>about</Button>
+          <Button onClick={() => this.onClick('/sample')}>sample</Button>
+        </div>
+        <div>
+          <Button onClick={() => this.onClick('/')}>home</Button>
+          <Button onClick={() => this.onClick('/about')}>about</Button>
+          <Button onClick={() => this.onClick('/sample')}>sample</Button>
+        </div>
+        <div>
+          <Button onClick={() => this.onClick('/')}>home</Button>
+          <Button onClick={() => this.onClick('/about')}>about</Button>
+          <Button onClick={() => this.onClick('/sample')}>sample</Button>
+        </div>
+        <div>
+          <Button onClick={() => this.onClick('/')}>home</Button>
+          <Button onClick={() => this.onClick('/about')}>about</Button>
+          <Button onClick={() => this.onClick('/sample')}>sample</Button>
+        </div>
+        <div>
+          <Button onClick={() => this.onClick('/')}>home</Button>
+          <Button onClick={() => this.onClick('/about')}>about</Button>
+          <Button onClick={() => this.onClick('/sample')}>sample</Button>
+        </div>
+        <div>
+          <Button onClick={() => this.onClick('/')}>home</Button>
+          <Button onClick={() => this.onClick('/about')}>about</Button>
+          <Button onClick={() => this.onClick('/sample')}>sample</Button>
+        </div>
+        <div>
+          <Button onClick={() => this.onClick('/')}>home</Button>
+          <Button onClick={() => this.onClick('/about')}>about</Button>
+          <Button onClick={() => this.onClick('/sample')}>sample</Button>
+        </div>
+        <div>
+          <Button onClick={() => this.onClick('/')}>home</Button>
+          <Button onClick={() => this.onClick('/about')}>about</Button>
+          <Button onClick={() => this.onClick('/sample')}>sample</Button>
+        </div>
+        <div>
+          <Button onClick={() => this.onClick('/')}>home</Button>
+          <Button onClick={() => this.onClick('/about')}>about</Button>
+          <Button onClick={() => this.onClick('/sample')}>sample</Button>
+        </div>
+        <div>
+          <Button onClick={() => this.onClick('/')}>home</Button>
+          <Button onClick={() => this.onClick('/about')}>about</Button>
+          <Button onClick={() => this.onClick('/sample')}>sample</Button>
+        </div>
+        <div>
+          <Button onClick={() => this.onClick('/')}>home</Button>
+          <Button onClick={() => this.onClick('/about')}>about</Button>
+          <Button onClick={() => this.onClick('/sample')}>sample</Button>
+        </div>
+        <div>
+          <Button onClick={() => this.onClick('/')}>home</Button>
+          <Button onClick={() => this.onClick('/about')}>about</Button>
+          <Button onClick={() => this.onClick('/sample')}>sample</Button>
+        </div>
+        <div>
+          <Button onClick={() => this.onClick('/')}>home</Button>
+          <Button onClick={() => this.onClick('/about')}>about</Button>
+          <Button onClick={() => this.onClick('/sample')}>sample</Button>
+        </div>
+        <div>
+          <Button onClick={() => this.onClick('/')}>home</Button>
+          <Button onClick={() => this.onClick('/about')}>about</Button>
+          <Button onClick={() => this.onClick('/sample')}>sample</Button>
+        </div>
+        <div>
+          <Button onClick={() => this.onClick('/')}>home</Button>
+          <Button onClick={() => this.onClick('/about')}>about</Button>
+          <Button onClick={() => this.onClick('/sample')}>sample</Button>
+        </div>
+        <div>
+          <Button onClick={() => this.onClick('/')}>home</Button>
+          <Button onClick={() => this.onClick('/about')}>about</Button>
+          <Button onClick={() => this.onClick('/sample')}>sample</Button>
+        </div>
       </Page>
     );
   }
