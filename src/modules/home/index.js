@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Button, Space } from 'antd-mobile';
+import { Button, Space, Swiper, Toast } from 'antd-mobile';
 
 import './index.less';
 
@@ -9,6 +9,8 @@ import Page from '@/components/page';
 import { dispatch } from '@/store';
 
 const classPrefix = 'g-home';
+
+const colors = ['#ace0ff', '#bcffbd', '#e4fabd', '#ffcfac'];
 
 class Home extends React.PureComponent {
   constructor(props) {
@@ -23,6 +25,21 @@ class Home extends React.PureComponent {
 
   render() {
     const { userInfo } = this.props;
+
+    const items = colors.map((color, index) => (
+      <Swiper.Item key={index}>
+        <div
+          className={`${classPrefix}-content`}
+          style={{ background: color }}
+          onClick={() => {
+            Toast.show(`你点击了卡片 ${index + 1}`);
+          }}
+        >
+          {index + 1}
+        </div>
+      </Swiper.Item>
+    ));
+
     return (
       <Page className={classPrefix} back={null} title="首页">
         <div>
@@ -43,9 +60,7 @@ class Home extends React.PureComponent {
         </Space>
         <div>{process.env.CSS_PREFIX}</div>
         <div>
-          <Button onClick={() => this.onClick('/')}>home</Button>
-          <Button onClick={() => this.onClick('/about')}>about</Button>
-          <Button onClick={() => this.onClick('/sample')}>sample</Button>
+          <Swiper>{items}</Swiper>
         </div>
         <div>
           <Button onClick={() => this.onClick('/')}>home</Button>
