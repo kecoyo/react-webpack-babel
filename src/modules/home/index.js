@@ -35,6 +35,7 @@ class Home extends React.PureComponent {
           <Button onClick={() => this.onClick('/about')}>about</Button>
           <Button onClick={() => this.onClick('/sample')}>sample</Button>
         </Space>
+        <div>{process.env.CSS_PREFIX}</div>
       </Page>
     );
   }

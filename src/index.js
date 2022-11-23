@@ -1,7 +1,6 @@
 import '@babel/polyfill';
-
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { createRoot } from 'react-dom/client';
 import Global from '@/common/Global';
 import App from './modules/app';
 
@@ -11,12 +10,9 @@ import './styles/index.less';
 
 window.Global = Global;
 
-ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-  document.getElementById('app')
-);
+const container = document.getElementById('root');
+const root = createRoot(container);
+root.render(<App />);
 
 if (module.hot) {
   module.hot.accept();

@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withNativeProps } from 'ljmui';
+import { withNativeProps } from 'ljmui2';
 import './index.less';
 
 const classPrefix = 'g-svg';

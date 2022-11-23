@@ -5,7 +5,7 @@ import './index.less';
 
 import Page from '@/components/page';
 import SVG from '@/components/svg';
-import { ProgressModal } from 'ljmui';
+// import { ProgressModal } from 'ljmui2';
 
 const classPrefix = 'g-about';
 
@@ -16,7 +16,7 @@ class About extends React.PureComponent {
   }
 
   onClick = () => {
-    ProgressModal.start({ message: 'sdfafafsd' });
+    // ProgressModal.start({ message: 'sdfafafsd' });
   };
 
   render() {

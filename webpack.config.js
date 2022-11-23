@@ -6,6 +6,9 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin'); // 将CSS提取出来，而不是和js混在一起
 // eslint-disable-next-line import/no-unresolved
 const WebpackBarPlugin = require('webpackbar'); // 进度条
+const SpeedMeasurePlugin = require('speed-measure-webpack-plugin');
+
+const { EnvironmentPlugin } = webpack;
 
 const isProd = process.env.NODE_ENV === 'production';
 
@@ -16,7 +19,7 @@ const webpackConfig = {
     './src/index.js', // your app's entry point
   ],
   output: {
-    path: path.join(__dirname, 'public'),
+    path: path.resolve(__dirname, 'public'),
     filename: 'static/js/[name].[chunkhash:8].js',
     chunkFilename: 'static/js/[name].[chunkhash:8].chunk.js',
   },
@@ -37,7 +40,6 @@ const webpackConfig = {
           presets: ['@babel/preset-env', '@babel/preset-react'],
           plugins: [
             ['@babel/plugin-transform-runtime'], //
-            ['import', { libraryName: 'antd', style: true }, 'antd'],
             ['import', { libraryName: 'antd-mobile', libraryDirectory: 'es/components' }, 'antd-mobile'],
           ],
         },
@@ -87,7 +89,7 @@ const webpackConfig = {
   },
   devServer: {
     static: {
-      directory: path.join(__dirname, 'public'),
+      directory: path.resolve(__dirname, 'public'),
     },
     compress: true,
     hot: true,
@@ -101,14 +103,15 @@ const webpackConfig = {
     ],
   },
   plugins: [
+    new SpeedMeasurePlugin(),
     new CleanWebpackPlugin(),
+    new EnvironmentPlugin({
+      CSS_PREFIX: 'lsf-',
+    }),
     new CopyWebpackPlugin({
       patterns: [{ from: 'static' }],
     }),
     new WebpackBarPlugin(), // 打包时美化进度条
-    new webpack.DefinePlugin({
-      'process.env': 'prod',
-    }),
     new MiniCssExtractPlugin({
       filename: 'static/css/[name].[chunkhash:8].css', // 生成的文件名
       chunkFilename: 'static/css/[name].[chunkhash:8].chunk.css',

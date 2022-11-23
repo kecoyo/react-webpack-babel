@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { NavBar } from 'antd-mobile';
-import { withNativeProps } from 'ljmui';
+import { withNativeProps } from 'ljmui2';
 import _ from 'lodash';
 
 import './index.less';
