@@ -3,9 +3,10 @@ import PropTypes from 'prop-types';
 import { withNativeProps } from 'ljmui2';
 import './index.less';
 
-const classPrefix = 'g-svg';
+const classPrefix = 'ljmui2-icon';
 
-const SVG = React.forwardRef((props, ref) => {
+const Icon = React.forwardRef((props, ref) => {
+  console.log("🚀 ~ Icon ~ props", props);
   let element = props.src.default || props.src; // esModule: true
 
   if (!element) {
@@ -20,8 +21,8 @@ const SVG = React.forwardRef((props, ref) => {
   );
 });
 
-SVG.propTypes = {
+Icon.propTypes = {
   src: PropTypes.object.isRequired,
 };
 
-export default SVG;
+export default Icon;

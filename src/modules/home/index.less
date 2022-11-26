@@ -1,4 +1,8 @@
+@import '../../styles/libs.less';
+
 @class-prefix: ~'g-home';
+
+@px2rem: 1 / 75 * 1rem;
 
 .@{class-prefix} {
   &-content {
@@ -7,7 +11,19 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 48px;
+    font-size: 48px * @px2rem;
     user-select: none;
+  }
+
+  &-icon {
+    width: 100px;
+    height: 100px;
+    .my-mixin;
+  }
+
+  &-image {
+    width: 150px;
+    height: 150px;
+    background-image: url('../../images/02.png');
   }
 }

@@ -1,12 +1,12 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Button, Space, Swiper, Toast } from 'antd-mobile';
-
 import './index.less';
-
 import router from '@/common/router';
-import Page from '@/components/page';
 import { dispatch } from '@/store';
+import Page from '@/components/page';
+import Icon from '@/components/icon';
+import { Icon as Icon2 } from 'ljmui2';
 
 const classPrefix = 'g-home';
 
@@ -16,11 +16,15 @@ class Home extends React.PureComponent {
   constructor(props) {
     super(props);
     this.state = {};
+
+    const ai = require('@/images/ai.svg');
+    console.log('🚀 ~ Home ~ constructor ~ ai', ai);
   }
 
   onClick = (path) => {
-    dispatch('actSetUserInfo', { name: path });
-    router.go(path);
+    // dispatch('actSetUserInfo', { name: path });
+    // router.go(path);
+    // Modal.alert('alert');
   };
 
   render() {
@@ -45,6 +49,7 @@ class Home extends React.PureComponent {
         <div>
           <img src={require('@/images/logo.png')} alt="" style={{ width: 48 }} />
           <b>{userInfo.name}</b>
+          {/* <UserName userid={0} /> */}
         </div>
         <br />
         <Space wrap>
@@ -62,6 +67,17 @@ class Home extends React.PureComponent {
         <div>
           <Swiper>{items}</Swiper>
         </div>
+
+        <Space>
+          <Icon className={`${classPrefix}-icon`} src={require('@/images/arrow-down.svg')} />
+          <Icon className={`${classPrefix}-icon`} src={require('@/images/arrow-down.svg')} />
+        </Space>
+
+        <Space>
+          <div className={`${classPrefix}-image`} />
+          <div className={`${classPrefix}-image`} style={{ background: `url(${require('@/images/02.png')})` }} />
+        </Space>
+        <img className={`${classPrefix}-image`} src={require('@/images/02.png')} />
         <div>
           <Button onClick={() => this.onClick('/')}>home</Button>
           <Button onClick={() => this.onClick('/about')}>about</Button>

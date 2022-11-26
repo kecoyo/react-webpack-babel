@@ -7,20 +7,54 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin'); // 将CSS提取
 // eslint-disable-next-line import/no-unresolved
 const WebpackBarPlugin = require('webpackbar'); // 进度条
 
-const { EnvironmentPlugin } = webpack;
-
 const isProd = process.env.NODE_ENV === 'production';
+
+const miniCssExtractLoader = {
+  loader: MiniCssExtractPlugin.loader,
+  options: {
+    publicPath: '../../',
+  },
+};
+
+const postcssLoader = {
+  loader: 'postcss-loader',
+  options: {
+    postcssOptions: {
+      plugins: [
+        [
+          'postcss-preset-env',
+          {
+            // Options
+          },
+        ],
+      ],
+    },
+  },
+};
+
+const lessLoader = {
+  loader: 'less-loader',
+  options: {
+    lessOptions: {
+      javascriptEnabled: true,
+      math: 'always',
+    },
+  },
+};
 
 const webpackConfig = {
   mode: isProd ? 'production' : 'development',
-  devtool: isProd ? 'cheap-module-source-map' : 'eval-cheap-module-source-map',
+  // devtool: isProd ? 'cheap-module-source-map' : 'eval-cheap-module-source-map',
+  devtool: isProd ? 'source-map' : 'cheap-module-source-map',
   entry: [
     './src/index.js', // your app's entry point
   ],
   output: {
+    publicPath: '',
     path: path.resolve(__dirname, 'public'),
-    filename: 'static/js/[name].[chunkhash:8].js',
-    chunkFilename: 'static/js/[name].[chunkhash:8].chunk.js',
+    filename: isProd ? 'static/js/[name].[contenthash:8].js' : 'static/js/bundle.js',
+    chunkFilename: isProd ? 'static/js/[name].[contenthash:8].chunk.js' : 'static/js/[name].chunk.js',
+    assetModuleFilename: 'static/media/[name].[hash][ext]',
   },
   resolve: {
     extensions: ['.js', '.jsx', '.css', '.less'],
@@ -45,50 +79,41 @@ const webpackConfig = {
       },
       {
         test: /\.css$/,
-        use: [isProd ? MiniCssExtractPlugin.loader : 'style-loader', 'css-loader', 'postcss-loader'],
+        use: [isProd ? miniCssExtractLoader : 'style-loader', 'css-loader', postcssLoader],
       },
       {
         test: /\.less$/,
-        use: [
-          isProd ? MiniCssExtractPlugin.loader : 'style-loader',
-          'css-loader',
-          'postcss-loader',
-          {
-            loader: 'less-loader',
-            options: {
-              lessOptions: {
-                javascriptEnabled: true,
-              },
-            },
-          },
-        ],
+        use: [isProd ? miniCssExtractLoader : 'style-loader', 'css-loader', postcssLoader, lessLoader],
       },
       {
-        test: /\.(png|jpe?g|gif|xml)$/,
+        test: /\.(png|jpe?g|gif)_?$/,
+        type: 'asset',
+        parser: {
+          dataUrlCondition: {
+            maxSize: 10 * 1024, // 最大限制，小于限制转换Base64
+          },
+        },
+      },
+      {
+        test: /\.svg$/,
         use: [
           {
-            loader: 'file-loader',
+            loader: 'svg-sprite-loader',
             options: {
-              publicPath: 'static/images',
-              outputPath: 'static/images',
+              symbolId: '[hash]', // 避免重名问题
               esModule: false,
             },
           },
         ],
-      },
-      {
-        test: /\.svg$/,
-        loader: 'svg-sprite-loader',
-        options: {
-          symbolId: '[hash]', // 避免重名问题
-          esModule: false,
-        },
       },
     ],
   },
   devServer: {
     static: {
       directory: path.resolve(__dirname, 'public'),
+    },
+    client: {
+      overlay: { errors: true, warnings: false },
     },
     compress: true,
     hot: true,
@@ -103,19 +128,32 @@ const webpackConfig = {
   },
   plugins: [
     new CleanWebpackPlugin(),
-    new EnvironmentPlugin({
-      CSS_PREFIX: 'lsf-',
-    }),
     new CopyWebpackPlugin({
       patterns: [{ from: 'static' }],
     }),
+    new webpack.EnvironmentPlugin({
+      CSS_PREFIX: 'lsf-',
+    }),
     new WebpackBarPlugin(), // 打包时美化进度条
     new MiniCssExtractPlugin({
-      filename: 'static/css/[name].[chunkhash:8].css', // 生成的文件名
-      chunkFilename: 'static/css/[name].[chunkhash:8].chunk.css',
+      filename: 'static/css/[name].[contenthash:8].css',
+      chunkFilename: 'static/css/[name].[contenthash:8].chunk.css',
     }),
     new HtmlWebpackPlugin({
       template: './src/index.html',
+      minify: {
+        removeComments: true,
+        collapseWhitespace: true,
+        removeRedundantAttributes: true,
+        useShortDoctype: true,
+        removeEmptyAttributes: true,
+        removeStyleLinkTypeAttributes: true,
+        keepClosingSlash: true,
+        minifyJS: true,
+        minifyCSS: true,
+        minifyURLs: true,
+      },
+      inject: true,
     }),
   ],
 };
